@@ -117,13 +117,6 @@ with st.form("migraine_form"):
 
     submitted = st.form_submit_button("Klasifikasi Migrain")
 
-if submitted:
-    user_data = [[age, duration, frequency, location, character, intensity, nausea, vomit,
-                  phonophobia, photophobia, visual, sensory, dysphasia, dysarthria, vertigo,
-                  tinnitus, hypoacusis, diplopia, defect, ataxia, conscience, paresthesia, dpf]]
-    prediction = model.predict(user_data)
-    predicted_type = prediction[0]
-
 def get_migraine_description(migraine_type):
     descriptions = {
         "Typical Aura With Migraine": "Anda mengalami migrain dengan aura. Gejala seperti kilatan cahaya atau kesemutan muncul sebelum sakit kepala berdenyut. Ini adalah jenis migrain yang khas dan sering dipicu oleh stres, cahaya terang, atau kurang tidur.",
@@ -135,6 +128,15 @@ def get_migraine_description(migraine_type):
         "Other": "Gejala Anda menunjukkan jenis migrain yang tidak umum. Bisa termasuk migrain kronis atau dengan pola tidak khas. Perlu pemantauan lebih lanjut dan diagnosis lanjutan."
     }
     return descriptions.get(migraine_type, "Deskripsi tidak tersedia untuk jenis migrain ini.")
+
+if submitted:
+    user_data = [[age, duration, frequency, location, character, intensity, nausea, vomit,
+                  phonophobia, photophobia, visual, sensory, dysphasia, dysarthria, vertigo,
+                  tinnitus, hypoacusis, diplopia, defect, ataxia, conscience, paresthesia, dpf]]
+    prediction = model.predict(user_data)
+    predicted_type = prediction[0]
+
+
     description = get_migraine_description(predicted_type)
 
     st.success(f"✅ Jenis migrain yang diprediksi: **{predicted_type}**")
