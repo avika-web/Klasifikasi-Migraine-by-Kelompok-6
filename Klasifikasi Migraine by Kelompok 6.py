@@ -122,18 +122,20 @@ if submitted:
                   phonophobia, photophobia, visual, sensory, dysphasia, dysarthria, vertigo,
                   tinnitus, hypoacusis, diplopia, defect, ataxia, conscience, paresthesia, dpf]]
     prediction = model.predict(user_data)
-    st.success(f"✅ Jenis migrain yang diprediksi: **{prediction[0]}**")
-    
-    # Deskripsi berdasarkan tipe
+    predicted_type = prediction[0]
+
+def get_migraine_description(migraine_type):
     descriptions = {
         "Typical Aura With Migraine": "Anda mengalami migrain dengan aura. Gejala seperti kilatan cahaya atau kesemutan muncul sebelum sakit kepala berdenyut. Ini adalah jenis migrain yang khas dan sering dipicu oleh stres, cahaya terang, atau kurang tidur.",
         "Typical Aura Without Migraine": "Anda mengalami aura tanpa nyeri kepala. Gangguan visual atau sensorik muncul, namun tidak diikuti sakit kepala. Biasanya tidak berbahaya, tetapi tetap perlu diperhatikan jika sering terjadi.",
         "Migraine Without Aura": "Anda mengalami migrain tanpa aura. Ditandai dengan sakit kepala berat, satu sisi, berdenyut, dan disertai mual atau sensitivitas terhadap cahaya dan suara.",
         "Basilar Type Aura": "Anda mengalami migrain dengan gejala dari batang otak. Seperti pusing berat, bicara cadel, atau penglihatan ganda sebelum sakit kepala. Perlu perhatian khusus karena gejalanya menyerupai stroke ringan.",
-        "Sporadic Hemiplegic": "Anda mengalami migrain disertai kelemahan sementara di satu sisi tubuh. Tidak ada riwayat keluarga, namun gejala menyerupai stroke dan perlu evaluasi medis lebih lanjut.",
+        "Sporadic Hemiplegic Migraine": "Anda mengalami migrain disertai kelemahan sementara di satu sisi tubuh. Tidak ada riwayat keluarga, namun gejala menyerupai stroke dan perlu evaluasi medis lebih lanjut.",
         "Familial Hemiplegic Migraine": "Anda mengalami migrain dengan kelemahan tubuh yang juga dialami keluarga. Jenis ini bersifat genetik dan dapat disertai gangguan sensorik atau bicara sementara.",
         "Other": "Gejala Anda menunjukkan jenis migrain yang tidak umum. Bisa termasuk migrain kronis atau dengan pola tidak khas. Perlu pemantauan lebih lanjut dan diagnosis lanjutan."
     }
+    return descriptions.get(migraine_type, "Deskripsi tidak tersedia untuk jenis migrain ini.")
+    description = get_migraine_description(predicted_type)
 
-    st.markdown("**🧾 Penjelasan Diagnosis:**")
-    st.info(descriptions.get(predicted_type, "Tidak ditemukan penjelasan untuk tipe ini."))
+    st.success(f"✅ Jenis migrain yang diprediksi: **{predicted_type}**")
+    st.markdown(f"**Deskripsi:** {description}")    
