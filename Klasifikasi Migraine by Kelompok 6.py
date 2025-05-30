@@ -33,7 +33,7 @@ with st.form("migraine_form"):
 
     st.markdown("**Frekuensi**")
     st.caption("1 = Jarang, 2=Terjadi sesekali dalam sebulan, 3=Terjadi beberapa kali dalam sebulan, 4=Sekitar dalam sekitar sekali dalam seminggu, 5=Terjadi beberapa kali dalam seminggu, 6=Terjadi hampir setiap hari, 7=Terjadi setip hari, 8=Lebih dari sekali sehari")
-    frequency = st.selectbox("input_frequency", options=list[1, 2, 3, 4, 5, 6, 7, 8], label_visibility="collapsed")
+    frequency = st.selectbox("input_frequency", options=[1, 2, 3, 4, 5, 6, 7, 8], label_visibility="collapsed")
 
     st.markdown("**Lokasi Nyeri Kepala**")
     st.caption("0 = Unilateral (Satu sisi kepala), 1 = Bilateral (Dua sisi kepala), 2 = Sisi Belakang/leher")
