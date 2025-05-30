@@ -127,7 +127,9 @@ def get_migraine_description(migraine_type):
         "Familial Hemiplegic Migraine": "Anda mengalami migrain dengan kelemahan tubuh yang juga dialami keluarga. Jenis ini bersifat genetik dan dapat disertai gangguan sensorik atau bicara sementara.",
         "Other": "Gejala Anda menunjukkan jenis migrain yang tidak umum. Bisa termasuk migrain kronis atau dengan pola tidak khas. Perlu pemantauan lebih lanjut dan diagnosis lanjutan."
     }
-    return descriptions.get(migraine_type, "Deskripsi tidak tersedia untuk jenis migrain ini.")
+
+    migraine_type = migraine_type.title()
+    return descriptions.get(migraine_type, descriptions["Other"])
 
 if submitted:
     user_data = [[age, duration, frequency, location, character, intensity, nausea, vomit,
